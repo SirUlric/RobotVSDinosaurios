@@ -51,12 +51,14 @@ export class Robot {
     }
 
     
-    moverPX(cantidadCasilleros = 1, TABLERO) {
+    moverPX(cantidadCasilleros, TABLERO) {
         if(isNaN(cantidadCasilleros)) return console.log(`Se debe ingresar un valor numerico`);
+        if(cantidadCasilleros === 0) return console.log(`Se debe ingresar un valor distinto de 0`);
         if(cantidadCasilleros < -2 || cantidadCasilleros > 2) cantidadCasilleros = 2;
         let pXV = this.getPosicionX;
-        let pX = this.getPosicionX + cantidadCasilleros;
         let pY = this.getPosicionY;
+        let pX = this.getPosicionX + cantidadCasilleros;
+        if(pX < 0 || pX > 7) return console.log(`Lugar fuera de rango`);
         if(this.getMovimientosR >= 2) return console.log(`Se supera la cantidad de movimientos por turno`);
         if(TABLERO[pX][pY] instanceof Dinosaurio) return console.log(`Lugar ocupado por un Dinosaurio. [X: ${pX}][Y: ${pY}]`);
         if(this.movimientosR + Math.abs(cantidadCasilleros) > 2) return console.log(`Solo se permiten 2 acciones por turno`);
@@ -65,12 +67,14 @@ export class Robot {
         TABLERO[pX][pY].setPosicionX = pX;
         TABLERO[pXV][pY] = null;
     }
-    moverPY(cantidadCasilleros = 1, TABLERO) {
+    moverPY(cantidadCasilleros, TABLERO) {
         if(isNaN(cantidadCasilleros)) return console.log(`Se debe ingresar un valor numerico`);
+        if(cantidadCasilleros === 0) return console.log(`Se debe ingresar un valor distinto de 0`);
         if(cantidadCasilleros < -2 || cantidadCasilleros > 2) cantidadCasilleros = 2;
         let pYV = this.getPosicionY;
-        let pY = this.getPosicionY + cantidadCasilleros;
         let pX = this.getPosicionX;
+        let pY = this.getPosicionY + cantidadCasilleros;
+        if(pY < 0 || pY > 7) return console.log(`Lugar fuera de rango`);
         if(this.movimientosR >= 2) return console.log(`Se supera la cantidad de movimientos por turno`);
         if(TABLERO[pX][pY] instanceof Dinosaurio) return console.log(`Lugar ocupado por un Dinosaurio. [X: ${pX}][Y: ${pY}]`);
         if(this.movimientosR + Math.abs(cantidadCasilleros) > 2) return console.log(`Solo se permiten 2 acciones por turno`);

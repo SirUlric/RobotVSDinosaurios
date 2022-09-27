@@ -61,32 +61,15 @@ const crearRobot = (pX, pY) => {
     
 };
 
-const seleccionarUnidad = tablero => {
+const seleccionarUnidad = () => {
     let r;
-    tablero.forEach((v, x) => {
-        tablero[x].forEach((v, y) => {
-            if(tablero[x][y] instanceof Robot) return r = tablero[x][y];
+    TABLERO.forEach((v, x) => {
+        TABLERO[x].forEach((v, y) => {
+            if(TABLERO[x][y] instanceof Robot) return r = TABLERO[x][y];
         })
     });
     return r;
 }
-
-const moverRobotX = pX => {
-    if(pX === 0) return console.log(`Se debe ingresar un valor distinto de 0`);
-    let r = seleccionarUnidad(TABLERO);
-    if(r.getPosicionX + pX < 0 || r.getPosicionX + pX > 7) return console.log(`Lugar fuera de rango`);
-    let {posicionX, posicionY} = r;
-    TABLERO[posicionX][posicionY].moverPX(pX, TABLERO);
-};
-
-const moverRobotY = pY => {
-    if(pY === 0) return console.log(`Se debe ingresar un valor distinto de 0`);
-    let r = seleccionarUnidad(TABLERO);
-    if(r.getPosicionY + pY < 0 || r.getPosicionY + pY > 7) return console.log(`Lugar fuera de rango`);
-    let {posicionX, posicionY} = r;
-    TABLERO[posicionX][posicionY].moverPY(pY, TABLERO);
-};
-
 
 
 //Creando Dinosaurios en posiciones aleatorias sobre el tablero
@@ -115,8 +98,9 @@ const moverRobotY = pY => {
 const verTablero = () => console.table(TABLERO);
 
 
-crearRobot(4, 2);
+crearRobot(0, 0);
 verTablero();
-moverRobotX(0)
-verTablero();
+seleccionarUnidad().moverPX(-1, TABLERO);
+verTablero()
+
 console.log(seleccionarUnidad(TABLERO));
