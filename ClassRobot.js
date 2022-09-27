@@ -50,7 +50,8 @@ export class Robot {
         this.identificador = numero;
     }
 
-    moverPX(cantidadCasilleros = 0, TABLERO) {
+    
+    moverPX(cantidadCasilleros = 1, TABLERO) {
         if(isNaN(cantidadCasilleros)) return console.log(`Se debe ingresar un valor numerico`);
         if(cantidadCasilleros < -2 || cantidadCasilleros > 2) cantidadCasilleros = 2;
         let pXV = this.getPosicionX;
@@ -64,7 +65,7 @@ export class Robot {
         TABLERO[pX][pY].setPosicionX = pX;
         TABLERO[pXV][pY] = null;
     }
-    moverPY(cantidadCasilleros = 0, TABLERO) {
+    moverPY(cantidadCasilleros = 1, TABLERO) {
         if(isNaN(cantidadCasilleros)) return console.log(`Se debe ingresar un valor numerico`);
         if(cantidadCasilleros < -2 || cantidadCasilleros > 2) cantidadCasilleros = 2;
         let pYV = this.getPosicionY;

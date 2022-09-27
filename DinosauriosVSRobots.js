@@ -72,17 +72,17 @@ const seleccionarUnidad = tablero => {
 }
 
 const moverRobotX = pX => {
+    if(pX === 0) return console.log(`Se debe ingresar un valor distinto de 0`);
     let r = seleccionarUnidad(TABLERO);
     if(r.getPosicionX + pX < 0 || r.getPosicionX + pX > 7) return console.log(`Lugar fuera de rango`);
-    if(r.movimientosR >= 2) return console.log(`No puedes realizar mas movimientos. Espera tu turno`);
     let {posicionX, posicionY} = r;
     TABLERO[posicionX][posicionY].moverPX(pX, TABLERO);
 };
 
 const moverRobotY = pY => {
+    if(pY === 0) return console.log(`Se debe ingresar un valor distinto de 0`);
     let r = seleccionarUnidad(TABLERO);
     if(r.getPosicionY + pY < 0 || r.getPosicionY + pY > 7) return console.log(`Lugar fuera de rango`);
-    if(r.movimientosR >= 2) return console.log(`No puedes realizar mas movimientos. Espera tu turno`);
     let {posicionX, posicionY} = r;
     TABLERO[posicionX][posicionY].moverPY(pY, TABLERO);
 };
@@ -117,7 +117,6 @@ const verTablero = () => console.table(TABLERO);
 
 crearRobot(4, 2);
 verTablero();
-moverRobotX(2)
+moverRobotX(0)
 verTablero();
-moverRobotY(1);
 console.log(seleccionarUnidad(TABLERO));
