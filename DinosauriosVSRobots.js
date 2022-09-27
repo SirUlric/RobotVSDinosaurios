@@ -71,13 +71,20 @@ const seleccionarUnidad = tablero => {
     return r;
 }
 
-const moverRobot = (pX, pY) => {
+const moverRobotX = pX => {
     let r = seleccionarUnidad(TABLERO);
     if(r.getPosicionX + pX < 0 || r.getPosicionX + pX > 7) return console.log(`Lugar fuera de rango`);
+    if(r.movimientosR >= 2) return console.log(`No puedes realizar mas movimientos. Espera tu turno`);
+    let {posicionX, posicionY} = r;
+    TABLERO[posicionX][posicionY].moverPX(pX, TABLERO);
+};
+
+const moverRobotY = pY => {
+    let r = seleccionarUnidad(TABLERO);
     if(r.getPosicionY + pY < 0 || r.getPosicionY + pY > 7) return console.log(`Lugar fuera de rango`);
     if(r.movimientosR >= 2) return console.log(`No puedes realizar mas movimientos. Espera tu turno`);
-    r.moverPX(pX, TABLERO);
-    r.moverPY(pY, TABLERO);
+    let {posicionX, posicionY} = r;
+    TABLERO[posicionX][posicionY].moverPY(pY, TABLERO);
 };
 
 
@@ -108,8 +115,9 @@ const moverRobot = (pX, pY) => {
 const verTablero = () => console.table(TABLERO);
 
 
-crearRobot(7, 2);
+crearRobot(4, 2);
 verTablero();
-moverRobot(-1, 1);
+moverRobotX(2)
 verTablero();
+moverRobotY(1);
 console.log(seleccionarUnidad(TABLERO));
